@@ -24,7 +24,6 @@ const sendRequest = async (req) => {
     if (existingConnectionRequest) {
         throw new Error("Connection Request Already Exist");
     }
-    console.log(fromUserId, toUserId, status);
     const connectionRequest = new ConnectionRequest({
         fromUserId,
         toUserId,
@@ -42,7 +41,6 @@ const reviewRequest = async (req) => {
         throw new Error("Status not found");
     }
     const convertedRequestId = new Types.ObjectId(requestId || '')
-    console.log(convertedRequestId, loggedInUser._id);
     const connectionRequest = await ConnectionRequest.findOne({
         _id: convertedRequestId,
         toUserId: loggedInUser._id,
