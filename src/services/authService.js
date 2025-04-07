@@ -1,6 +1,9 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
+const { validateSignUpData } = require("../utils/validation");
+
 const addUser = async (req) => {
+  validateSignUpData(req);
   const { firstName, lastName, emailId, password } = req.body;
   const passwordHash = await bcrypt.hash(password, 10);
   const user = new User({

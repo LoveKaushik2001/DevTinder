@@ -14,7 +14,7 @@ const loginController = async (req, res) => {
     res.cookie("token", token, {
       expires: new Date(Date.now() + 8 * 3600000),
     });
-    res.send("Login Successful!!!");
+    res.send({ message: "Login Successful!!!" });
   } catch (error) {
     res.status(400).send({ message: "ERROR : " + error.message });
   }
