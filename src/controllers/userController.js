@@ -1,4 +1,4 @@
-const { receivedRequests, getConnections } = require("../services/userService");
+const { receivedRequests, getConnections, getFeedData } = require("../services/userService");
 
 const receivedRequestController = async (req, res) => {
     try {
@@ -18,4 +18,13 @@ const getConnectionsController = async (req, res) => {
     }
 }
 
-module.exports = { receivedRequestController, getConnectionsController };
+const feedController = async (req, res) => {
+    try {
+        const data = await getFeedData(req);
+        res.status(200).send({ data, message: "Feed Data" })
+    } catch (error) {
+        res.status(400).send({ message: error.message });
+    }
+}
+
+module.exports = { receivedRequestController, getConnectionsController, feedController };
